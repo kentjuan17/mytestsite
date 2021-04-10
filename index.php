@@ -15,7 +15,9 @@
         <i class="fas fa-user-astronaut"></i>
 
         <h1>Hello World</h1>
+    <!-- WHAT IS YOUR NAME??
         <h2>What is your name?</h2>
+    
         <p>
             <input type="text" name="name" id="name" class="name" placeholder="Enter your name" />
         </p>
@@ -23,20 +25,32 @@
             <input type="text" name="age" id="age" class="age" placeholder="Enter your age" />
             <input type="submit" name="submit" id="submit" class="btnName" placeholder="Click to submit" onClick="alertDetails()" />
         </p>
-
+    -->
+        <h2>Enter Amount</h2>
+        <p>
+            <input type="text" name="price1" id="price1" class="price" placeholder="Enter amount" />
+        </p>
+        <p>
+            <input type="text" name="price2" id="price2" class="price" placeholder="Enter amount" />
+        </p>
+        <p>
+            <input type="text" name="price3" id="price3" class="price" placeholder="Enter amount" />
+        </p>
+        <p>
+            <input type="text" name="price4" id="price4" class="price" placeholder="Enter amount" />
+        </p>
+        <p>
+            <input type="submit" name="submit" id="submit" class="btnName" value="Click Me!"/>
+        </p>
+        
+        <p>
+            <input type="text" name="total" id="total" class="total" placeholder="Total amount will be displayed here" />
+        </p>
+        
         <?php include "footer.html"; ?>
 
     </body>
 
-    <script type="text/javascript">
-        const nameInput = document.querySelector('#name')
-        const ageInput = document.querySelector('#age')
-
-        const alertDetails = () => {
-            alert(`
-                Hello ${nameInput.value}! You are ${ageInput.value} years old!
-            `)
-        }
-    </script>
+    <script src="./main.js"></script>
 
 </html>
