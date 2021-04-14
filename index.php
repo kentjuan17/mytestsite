@@ -13,9 +13,9 @@
         <?php include "header.html"; ?>
 
         <main>
-        
             <section class="banner">    
                 <h1 class="h1-sticky">Welcome</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae provident id praesentium magni consectetur facilis quos fugit impedit suscipit non exercitationem, aliquam voluptatum ab eos ipsum odit, voluptas vero labore?</p>
             </section>
                 
                     <!-- WHAT IS YOUR NAME??
