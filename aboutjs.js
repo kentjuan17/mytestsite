@@ -66,4 +66,57 @@ const Contacts =[
         isSaved: "SD"
     }
 ];
-console.log(Contacts[1].fullName);
+//console.log(Contacts[1].fullName);
+
+//For Loop
+/*for (let i = 0; i < Contacts.length; i++) {
+    console.log(Contacts[i].id);
+} */
+
+//While Loop
+/*let i = 0;
+*while(i < 10) {
+*    console.log(`While loop ang value ay ${i}`);
+*    i++;
+*} */
+
+/*//For Of Loop
+for (let contact of Contacts){
+    console.log(contact);
+}; */
+
+/* // For Each Loop
+Contacts.forEach( function(contact){
+    console.log(contact.fullName)
+}); */
+
+/*const ContactsFullName = Contacts.map(function(contact) {
+    return contact.fullName;
+});
+
+/*console.log(ContactsFullName); */
+
+/* //filter to only view the data that is saved "Phone"
+//connecting functions
+const ContactsPhone = Contacts.filter(function(contact) {
+    return contact.isSaved == "Phone";
+}).map(function(contact){
+    return contact.fullName;
+});
+
+console.log(ContactsPhone); */
+
+/*//JSON - for API USE
+const ContactsJSON = JSON.stringify(Contacts);
+
+console.log(ContactsJSON); */
+
+//CONDITIONALS
+//Logical Operators - IF STATEMENT
+const x = "100";
+
+if (x == 100) {
+    console.log("it is 100");
+} else {
+    console.log("Not 100");
+}
