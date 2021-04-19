@@ -113,10 +113,12 @@ console.log(ContactsJSON); */
 
 //CONDITIONALS
 //Logical Operators - IF STATEMENT
-const x = "100";
+const x = "201";
 
-if (x == 100) {
+if (x === 100) {
     console.log("it is 100");
+} else if(x > 200) {
+    console.log("Value greater than 100");
 } else {
     console.log("Not 100");
 }
