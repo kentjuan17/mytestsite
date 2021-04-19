@@ -113,12 +113,61 @@ console.log(ContactsJSON); */
 
 //CONDITIONALS
 //Logical Operators - IF STATEMENT
-const x = "201";
+// OR is ||
+/*const x = "201";
 
-if (x === 100) {
-    console.log("it is 100");
+if (x === 100 || x > 200) {
+    console.log("true");
 } else if(x > 200) {
-    console.log("Value greater than 100");
+    console.log("Value greater than 200");
 } else {
-    console.log("Not 100");
+    console.log("False");
+} */
+
+//function types
+/*let x = 100;
+let y = 200;
+
+function GetSum(x, y) {
+    return x + y;
 }
+console.log(GetSum(x, y)); */
+
+// ES6 - arrow function
+//
+/*const GetSum = x =>  x + 400;
+console.log(GetSum(100)); */
+
+//OOP
+
+//constructor function
+function Tao() {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.bt = bt;
+
+    this.getFullName = () => {
+        return `${this.firstName} ${this.lastName}`;
+    }
+}
+
+//class - First letter should be capital letter - because small letter on the first letter is prone to errors
+/* class Tao {
+    constructor(firstName, lastName, bt){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bt = bt;
+    }
+
+    getFullName(){
+        return `${this.firstName} ${this.lastName}`;
+
+    }
+} */
+
+//instantiate object
+const tao1 = new Tao('Kent', 'Juan', 'O');
+const tao2 = new Tao('Kristine','Juan','O+');
+
+console.log(tao1.getFullName());
+console.log(tao2);

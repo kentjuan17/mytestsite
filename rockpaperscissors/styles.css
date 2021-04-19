@@ -98,6 +98,30 @@ img {
     margin-top: 20px;
 }
 
+.stat-board {
+    margin: 40px auto;
+    padding-top: 0;
+    padding-bottom: 20px;
+    border: 3px solid white;
+    border-radius: 4px;
+    text-align: center;
+    width: 300px;
+    color: white;
+    font-size: 46px;
+    font-family: Asap, san-serif;
+    position: relative;
+}
+
+p.count {
+    text-align: center;
+    color: white;
+    font-family: Asap, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+
 
 .green-glow {
     border: 4px solid #4dcc7d;
