@@ -13,6 +13,8 @@ img.logo {
 
 div.logo {
     align-items: center;
+    padding: 10px 10px;
+    margin: 10px 10px;
 }
 
 ul.nav-ul {
