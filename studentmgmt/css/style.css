@@ -1,0 +1,29 @@
+body {
+    background: lightgray;
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    text-align: left;
+    background-color: yellow;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
