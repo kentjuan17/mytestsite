@@ -6,8 +6,8 @@ if(!isset($_SESSION)) {
 
 if(isset($_SESSION['UserLogin'])){
     echo "Welcome ".$_SESSION['UserLogin'];
-} else {
-    echo "Welcome Guest";
+}else{
+    echo "Welcome Guest.";
 }
 
 include_once("connections/connection.php");
@@ -45,6 +45,7 @@ $row = $students->fetch_assoc();
     <table>
     <thead>
         <tr>
+            <th>Details</th>
             <th>First Name</th>
             <th>Last Name</th>
         </tr>     
@@ -52,6 +53,7 @@ $row = $students->fetch_assoc();
     <tbody>
         <?php do{ ?>
         <tr>
+            <td><a href="details.php?ID=<?php echo $row['id']; ?> ">View</a></td>
             <td><?php echo $row['first_name']; ?></td>
             <td><?php echo $row['last_name']; ?></td>
         </tr>

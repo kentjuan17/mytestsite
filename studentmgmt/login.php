@@ -1,5 +1,8 @@
 <?php
 
+if(!isset($_SESSION)) {
+    session_start();
+}
 
 
 include_once("connections/connection.php");
@@ -18,7 +21,7 @@ if(isset($_POST['login'])) {
     if($total > 0) {
     $_SESSION['UserLogin'] = $row['username'];
     $_SESSION['Access'] = $row['access'];
-    echo header("Location: index.php");
+        echo header("Location: index.php");
     } else {
         echo "No user found.";
     }

@@ -27,3 +27,14 @@ th {
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
+a {
+    color: #111;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #555;
+    font-weight: bold;
+
+}
