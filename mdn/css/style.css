@@ -24,13 +24,33 @@ header {
     position: sticky;
     top: 0px;
     box-shadow: 0px 1px 2px #333;
+    justify-content: center;
+    align-content: space-between;
 }
 
+.nav-logo {
+    width: 50%;
+    align-items: left;
+    justify-content: center;
+}
+
+.nav-menu {
+    width: 50%;
+    align-items: right;
+}
+
+.navbar {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
 
 main {
     width: 80%;
     margin: 0 auto;
     background-color: #333;
+    overflow: hidden;
 }
 
 
@@ -53,47 +73,70 @@ li {
 
 }
 
-.nav-logo {
-    width: 100px;
+.nav-logo img {
+    width: 50px;
     height: auto;
 }
 
-h1, h3 {
-    color: #ddd;
+h1 {
+    font-size: 3em;
+}
+
+.welcome-msg h1, h3 {
+    color: #222;
     text-align: center;
 }
 
+
+
 main {
     background-image: url("/img/bg.jpg");
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 
 .banner-welcome {
-    height: 500px;
+    padding-top: 100px;
+    min-height: 500px;
+    align-content: center;
+    justify-content: center;
+    vertical-align: middle;
 }
 
 .banner-welcome div img {
-    display: flex;
-    box-sizing: border-box;
+    width: 10em;
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }
 
 .banner-welcome div.welcome-msg {
-    margin: 0 auto;
+    display: grid;
+    height: 100px;
+    padding-top: 10px;
+    align-content: flex-start;
     align-items: center;
+    justify-content: center;
 }
 
+
 .banner-welcome button {
-    width: 80px;
-    padding: 1px 2px;
+    padding: 10px 0;
+    margin: 10px 85px;
+    border-radius: 5px;
+    border: none;
     text-align: center;
+    justify-content: center;
     font-weight: bold;
+    font-size: 0.8em;
 }
 
 .banner-welcome button:hover {
     cursor: pointer;
+    background-color: #222;
+    color: #ddd;
 }
 
 .banner-info {
