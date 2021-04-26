@@ -81,7 +81,9 @@ a {
 a:hover {
     color: #ddd;
     box-shadow: 0 1px 0 #ddd;
-    
+    font-weight: bold;
+    transition: 300ms;
+    transition-timing-function: ease-out;
 }
 
 
@@ -167,7 +169,10 @@ main {
     cursor: pointer;
     background-color: #ddd;
     color: #222;
+    box-shadow: 0 1px 10px #222;
     transition: 300ms;
+    transition-duration: 400ms;
+    transition-timing-function: linear;
 }
 
 .roblox-chars {
@@ -192,8 +197,12 @@ main {
 
 /* Second section */
 .banner-info {
-    padding: 20px 25px;
+    padding: 20px 25px 60px;
     background-color: #333;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: space-around;
+    justify-content: space-evenly;
 }
 
 .banner-info h2 {
@@ -202,19 +211,43 @@ main {
 }
 
 .banner-info p {
+    padding-top: 20px;
+    padding-bottom: 20px;
     color: #ddd;
-    text-align: justify;
+    text-align: center;
+
 }
 
 .box-info {
     float: left;
     width: calc(33% - 20px);
     padding: 0 10px;
+    text-align: center;
 }
 
+.box-info button {
+    padding: 15px 20px;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: #ddd;
+    color: #222;
+}
+
+.box-info button:hover {
+    cursor: pointer;
+    background-color: #222;
+    color: #ddd;
+    box-shadow: 0 1px 0 #ddd;
+    transition: 300ms;
+    transition-duration: 400ms;
+    transition-timing-function: linear;
+}
 
 .banner-gallery {
-    height: 500px;
+    height: auto;
     padding: 20px 120px;
 }
 
@@ -222,11 +255,78 @@ main {
     margin: 20px auto;
     text-transform: uppercase;
     text-align: center;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .banner-gallery p {
     text-align: justify;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding-bottom: 40px;
 }
+
+
+
+/* CONTACT FORM */
+
+.contact-form {
+    box-sizing: border-box;
+    display: block;
+    margin: 0 auto;
+    padding: 20px auto;
+    padding-left: 10%;
+    padding-bottom: 40px;
+}
+
+.contact-form-field {
+    float: none;
+    padding: 5px;
+    align-items: center;
+
+}
+
+.contact-form-field label {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    color: white;
+    font-size: 1.4em;
+}
+
+.contact-form-field input[type="text"], input[type="email"], textarea {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 15px;
+    width: 80%;
+}
+
+.contact-form-field button {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #222;
+    color: #ddd;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.contact-form-field button:hover {
+    cursor: pointer;
+    background-color: #ddd;
+    color: #222;
+    box-shadow: 0 1px 10px #222;
+    transition: 300ms;
+    transition-duration: 400ms;
+    transition-timing-function: linear;
+}
+
 
 
 .clearfix {
@@ -277,6 +377,21 @@ footer p {
         float: none;
         display: inline;
     } */
+
+    .contact-form {
+        margin: 20px auto;
+        padding: 40px auto;
+        padding-left: 0;
+    }
+
+    .contact-form-field input[type="text"], input[type="email"], textarea {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px 15px;
+        width: 100%;
+    }
+
+
 }
 
 
@@ -303,4 +418,20 @@ footer p {
         float: none;
         display: inline;
     }
+
+
+    .contact-form {
+        margin: 0 auto;
+        padding: 40px auto;
+        padding-left: 0;
+    }
+
+    .contact-form-field input[type="text"], input[type="email"], textarea {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px 15px;
+        width: 100%;
+    }
+
+
 }
