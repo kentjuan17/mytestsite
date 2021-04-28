@@ -337,7 +337,6 @@ main {
 
 
 
-
 /* FOOTER SECTION */
 
 footer {
@@ -434,4 +433,14 @@ footer p {
     }
 
 
+}
+
+
+
+/* JAVASCRIPT CSS */
+
+#section p {
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: bold;
 }
