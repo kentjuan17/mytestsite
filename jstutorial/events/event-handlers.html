@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handlers</title>
+    <style>
+        .grandparent {
+            margin: auto;
+            padding: 40px;
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+
+        .parent {
+            padding: 40px;
+            background-color: blue;
+        }
+
+        .child {
+            padding: 40px;
+            width: 40px;
+            height: 40px;
+            background-color: lawngreen;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="grandparent">
+        <div class="parent">
+            <div class="child">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        
+    const grandParent = document.querySelector(".grandparent");
+    const parent = document.querySelector(".parent");
+    const child = document.querySelector(".child");
+    // const para = document.querySelector("p");
+    // const ul = document.querySelector("ul");
+    // const li = document.createElement("li");
+    // ul.appendChild(li)
+
+    let random = num => Math.floor(Math.random()* num)
+
+    // function bgChange(item) {
+    //     const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')'
+    //     item.style.backgroundColor = rndCol
+    // }
+
+
+
+    // grandParent.addEventListener('click', e => {
+    //     console.log(e.target)
+    // })
+
+    // grandParent.addEventListener('click', e => {
+    //     console.log("Grandparent Bubble")
+    //     li.textContent = "Grandparent Bubble"
+    // })
+
+    // grandParent.addEventListener('click', e => {
+    //     console.log("Grandparent Capture")
+    //     li.textContent = "Grandparent Capture"
+    // }, {capture: true})
+
+    // parent.addEventListener('click', e => {
+    //     console.log("Parent Bubble")
+    // })
+
+    // parent.addEventListener('click', e => {
+    //     console.log("Parent Capture")
+    // }, {capture: true})
+
+    // child.addEventListener('click', e => {
+    //     console.log("Child Bubble")
+    // })
+
+    // child.addEventListener('click', e => {
+    //     console.log("Child Capture")
+    // }, {capture: true})
+
+    // document.addEventListener('click', e => {
+    //     console.log("Document Bubble")
+    // })
+
+    // document.addEventListener('click', e => {
+    //     console.log("Document Capture")
+    // }, {capture: true})
+
+
+    const divs = document.querySelectorAll("div")
+
+    addGlobalEventLister("click", "div", e => {
+        console.log("Hi!")
+    })
+
+    
+    function addGlobalEventLister(type, selector, callback) {
+        document.addEventListener(type, e => {
+            if (e.target.matches(selector)) callback (e)
+        })
+    }
+
+    const newDiv = document.createElement("div")
+    newDiv.style.width = "200px"
+    newDiv.style.height = "200px"
+    newDiv.style.backgroundColor = "purple"
+    document.body.append(newDiv)
+
+    </script>
+</body>
+</html>
