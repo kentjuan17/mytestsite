@@ -1,0 +1,36 @@
+* {
+    font-family: sans-serif;
+}
+
+.container {
+    padding: 1rem;
+    margin: 2rem 2rem;
+    text-align: center;
+}
+
+.counter {
+    display: block;
+
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+
+button {
+    text-transform: capitalize;
+    padding: 0.5rem;
+    border: 0;
+    background-color: #ddd;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversal</title>
+</head>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        div {
+            display: flex;
+            margin: .5rem;
+            padding: 1rem;
+            border: 3px solid black;
+            min-height: 1rem;
+            flex-grow: 1;
+        }
+
+        .grandparent {
+            background-color: hsl(0, 50%, 50%);
+            flex-direction: column;
+        }
+
+        .parent {
+            background-color: hsl(100, 50%, 50%);
+        }
+
+        .child {
+            background-color: hsl(200, 50%, 50%);
+        }
+
+    </style>
+<body>
+
+    <div class="grandparent" id="grandparent-id">
+        <div class="parent">
+            <div class="child" id="child-one"></div>
+            <div class="child"></div>
+        </div>
+        <div class="parent">
+            <div class="child"></div>
+            <div class="child"></div>
+        </div>
+    </div>
+
+    <script>
+        // const grandparent = document.getElementById("grandparent-id")
+        // const grandparent = document.querySelector("#grandparent-id")
+        // const parents = Array.from(document.getElementsByClassName("parent"))
+        // const parents = document.querySelectorAll(".parent")
+        // const parents = Array.from(grandparent.children)
+        // const child = Array.from(document.getElementsByClassName("child"))
+        const childOne = document.querySelector("#child-one")
+        // const parent = childOne.parentElement
+        const grandparent = childOne.closest(".grandparent")
+
+        const childTwo = childOne.nextElementSibling
+
+        // changeColor(childOne)
+        changeColor(childTwo.previousElementSibling)
+
+        // parents.forEach(changeColor)
+
+        function changeColor(element) {
+            element.style.backgroundColor = "#333"
+
+        }
+    </script>
+</body>
+</html>
