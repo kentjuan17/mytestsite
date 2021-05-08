@@ -1,0 +1,75 @@
+/* Importing Google font - Quicksand */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+/* font-family: 'Quicksand', sans-serif; */
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+
+/* color schemes */
+:root {
+
+    --pink: rgba(226, 174, 221,1);
+    --pinkhover: rgba(226, 174, 221, 0.8);
+    --green: #1b998b;
+    --grey: #666a86;
+    --black: #002626;
+    --cream: rgba(215, 217, 177, 1);
+    --btnhover: rgba(215, 217, 177, 0.8);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, var(--green), var(--grey));
+}
+
+.window {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.window > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid lightcyan;
+    outline: none;
+    background-color: var(--pink);
+}
+
+.window > button:hover {
+    background: var(--pinkhover);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.screen {
+    grid-column: 1 / -1;
+    background-color: var(--black);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.screen .previous-number {
+    color: var(--cream);
+    font-size: 1.5rem;
+}
+
+.screen .current {
+    color: var(--cream);
+    font-size: 2.5rem;
+}
