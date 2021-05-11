@@ -64,12 +64,12 @@ body {
     word-break: break-all;
 }
 
-.screen .previous-number {
+.screen .previous-operand {
     color: var(--cream);
     font-size: 1.5rem;
 }
 
-.screen .current {
+.screen .current-operand {
     color: var(--cream);
     font-size: 2.5rem;
 }

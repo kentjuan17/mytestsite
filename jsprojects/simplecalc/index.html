@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <script src="./script.js"></script>
 </head>
 <body>
         <div class="window">
             <div class="screen">
-                <div data-previous-operand class="previous-number" id="compute"></div>
-                <div data-current-operand class="current" id="input"></div>
+                <div data-previous-operand class="previous-operand"></div>
+                <div data-current-operand class="current-operand"></div>
             </div>
             <button data-all-clear class="span-two">AC</button>
             <button data-delete>DEL</button>
@@ -32,8 +33,5 @@
             <button data-number>0</button>
             <button data-equals class="span-two">=</button>
         </div>
-
-        
-        <script src="./script.js"></script>
 </body>
 </html>
