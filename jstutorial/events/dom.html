@@ -39,11 +39,11 @@
     <div class="grandparent" id="grandparent-id">
         <div class="parent">
             <div class="child" id="child-one"></div>
-            <div class="child"></div>
+            <div class="child" id="child-two"></div>
         </div>
         <div class="parent">
-            <div class="child"></div>
-            <div class="child"></div>
+            <div data-div class="child" id="child-three"><p data-p>Hello</p></div>
+            <div data-div class="child" id="child-four"><p data-p>Test</p></div>
         </div>
     </div>
 
@@ -57,11 +57,40 @@
         const childOne = document.querySelector("#child-one")
         // const parent = childOne.parentElement
         const grandparent = childOne.closest(".grandparent")
+        const dataDiv = document.querySelectorAll("[data-div]")
+        const p = document.querySelectorAll("[data-p]")
 
-        const childTwo = childOne.nextElementSibling
+        const childTwo = document.querySelector("#child-two")
 
         // changeColor(childOne)
-        changeColor(childTwo.previousElementSibling)
+
+        childOne.addEventListener('click', e => {
+            changeColor(childOne)
+            console.log('changes color')
+        })
+
+        function creation() {
+            
+        }
+
+        childTwo.addEventListener('click', e => {
+            console.log(e.code)
+        })
+       
+        dataDiv.forEach(button => {
+            button.addEventListener('click', () => {
+                changeColor(childOne)
+                console.log('change color')
+            })
+        })
+
+        p.forEach(button => {
+            button.addEventListener('click', () => {
+                p.innerHTML = "hello"
+                console.log("hello")
+            })
+        })
+        
 
         // parents.forEach(changeColor)
 
