@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Object basics: Task 3</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+
+  <body>
+
+    <section class="preview">
+
+
+
+    </section>
+
+  </body>
+  <script>
+
+    // Finally for our object basics assessment, we want you to return to the cat object literal from Task #1. We want you to rewrite the greeting() method so that it logs "Hello, said Bertie the Cymric." to the browser DevTools' console, but in a way that will work across any cat object of the same structure, regardless of its name or breed.
+    // When you are done, write your own object called cat2, which has the same structure, exactly the same greeting() method, but a different name, breed, and color.
+    // Call both greeting() methods to check that they log appropriate greetings to the console.
+    // The code is not very DRY (each bit of code should only be defined once) — you've got the same method defined twice, for example. Describe how you'd make it more DRY? If you are not sure, then don't worry — this is what we'll be looking at in future articles in the series!
+
+    function Cat(name, breed, color, greeting) {
+        this.name = name;
+        this.breed = breed;
+        this.color = color;
+        this.greeting = greeting;
+      }
+
+    let cat = {
+      name : 'Bertie',
+      breed : 'Cymric',
+      color : 'white',
+      greeting: function() {
+        console.log(`Hello, said ${this.name} the ${this.breed}`);
+      }
+    }
+
+    let cat2 = new Cat('Snow White', 'Japanese Spitz', 'White', function() {
+        console.log(`Hello, said ${this.name} the ${this.breed}`);
+      });
+
+    const section = document.querySelector('section');
+
+    let para1 = document.createElement('p');
+    let para2 = document.createElement('p');
+
+    para1.textContent = `The cat's name is ${ cat.name }.`;
+    para2.textContent = `The cat's color is ${ cat.color }.`;
+
+    section.appendChild(para1);
+    section.appendChild(para2);
+
+
+  </script>
+
+</html>

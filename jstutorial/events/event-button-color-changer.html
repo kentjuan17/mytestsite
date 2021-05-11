@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Events: Task 3</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      button {
+        display: block;
+        margin: 20px 0 20px 20px;
+      }
+
+      .button-bar {
+        padding: 20px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <section class="preview">
+    </section>
+
+    <div class="button-bar">
+      <button data-color="red">Red</button>
+      <button data-color="yellow">Yellow</button>
+      <button data-color="green">Green</button>
+      <button data-color="purple">Purple</button>
+      <button data-color="black">Blue</button>
+    </div>
+
+  </body>
+  <script>
+
+  let buttonBar = document.querySelector('.button-bar');
+
+  // Add your code here
+
+    const color = document.querySelectorAll('[data-color]');
+
+    buttonBar.addEventListener('click', e => {
+        const colorChange = e.target.dataset.color;
+
+        switch (colorChange) {
+            case 'red': 
+                buttonBar.style.backgroundColor = 'red';
+                break;
+            case 'yellow':
+                buttonBar.style.backgroundColor = 'yellow';
+                break;
+            case 'green': 
+                buttonBar.style.backgroundColor = 'green';
+                break;
+            case 'purple': 
+                buttonBar.style.backgroundColor = 'purple';
+                break;
+            case 'black': 
+                buttonBar.style.backgroundColor = 'black';
+                break;
+            default: buttonBar.style.backgroundColor = 'white';
+
+        }
+    })
+
+
+  </script>
+
+</html>
