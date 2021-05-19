@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Website for DOM, Events and Objects</title>
+    <style>
+    
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    body {
+        background-color: #bbb;
+    }
+
+    h1 {
+        padding: 20px 20px;
+    }
+
+    div {
+        display: grid;
+        grid-column: 2;
+        width: 100%;
+        align-content: center;
+        justify-content: center;
+    }
+
+    div h2 {
+        padding: 20px 40px;
+    }
+
+    div label {
+        text-align: left;
+        padding: 0.5em 0.3em;
+    }
+    
+    div input {
+        width: 100%;
+        font-weight: bold;
+        padding: 0.5em 0.2em;
+        margin:  auto;
+    }
+
+    hr {
+        margin-top: 0.5em;
+        padding: 0;
+    }
+
+    div button {
+        width: 100%;
+        text-align: center;
+        margin: 0.5em auto;
+        padding: 0.5em 0.3em;
+    }
+
+
+    p {
+        padding: 2em;
+    }
+
+
+    </style>
+</head>
+<body>
+    <h1>DOM, Events & Objects</h1>
+    <div>
+    <h2>Enter Book details:</h2>
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name">
+    <label for="author">Author:</label>
+    <input type="text" name="author" id="author">
+    <label for="year">Year:</label>
+    <input type="text" name="year" id="year">
+    <hr>
+    <button type="submit" id="submit">Submit</button>
+    <hr>
+    <button type="reset" id="reset">Clear</button>
+    </div>
+
+    <p class="section">Test</p>
+
+    <div>
+        <ul id="list">
+
+        </ul>
+    </div>
+    
+
+    <script>
+    // Variables
+    const reset = document.querySelector('#reset');
+    const submit = document.querySelector('#submit');
+    const nameInput = document.querySelector('#name');
+    const authorInput = document.querySelector('#author');
+    const yearInput = document.querySelector('#year');
+    const para = document.querySelector('.section');
+    const addList = document.querySelector('ul');
+    const li = document.createElement('li');
+    let bookList = [];
+    
+
+    //Book class
+    class Book {
+        constructor(name, author, year) {
+            this.name = name;
+            this.author = author;
+            this.year = year;
+        }
+
+        //Submit button
+        submitBtn () {
+        para.textContent = `The name of the book is \"${this.name}\", written by \"${this.author}\". Published in ${this.year}`;
+        }
+
+        
+    }
+
+    //Clear button
+    const clearInput = () => {
+        nameInput.value = '';
+        authorInput.value = '';
+        yearInput.value = '';
+
+    }
+    reset.addEventListener('click', () => clearInput());
+
+
+
+    submit.addEventListener('click', () => {
+        let output = new Book (nameInput.value, author.value, yearInput.value);
+        
+        if (!nameInput.value || !authorInput.value || !yearInput.value) {
+            alert("One of the field is empty")
+            clearInput();
+
+        } else {
+            //Adding it to the booklist
+            bookList.push(output);
+            //prints the latest book submitted
+            output.submitBtn();
+            console.log(output)
+
+            //clear info after clicking submit button
+            clearInput();
+
+        }
+
+
+        addList.appendChild(li);
+        li.innerHTML = bookList[output];
+
+        nameInput.focus()
+    })
+
+
+
+    //Book List
+
+    //unfinished
+    
+
+
+
+
+
+
+    </script>
+</body>
+</html>
