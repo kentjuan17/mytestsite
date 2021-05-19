@@ -2,24 +2,42 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Object-oriented JavaScript class further exercises</title>
+    <title>Object-oriented JavaScript inheritance</title>
   </head>
 
   <body>
-    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+    <div>
+      <label for="jscode">Enter code:</label>
+      <input type="text" id="jscode">
+      <button>Submit code</button>
+    </div>
 
+    <p></p>
   </body>
 
     <script>
+      const input = document.querySelector('input');
+      const btn = document.querySelector('button');
+      const para = document.querySelector('p');
+
+      btn.addEventListener('click', () => {
+        const code = input.value;
+        para.textContent = eval(code);
+      })
+
+
       function Person(first, last, age, gender, interests) {
         this.name = {
-          'first': first,
-          'last' : last
+          first,
+          last
         };
         this.age = age;
         this.gender = gender;
         this.interests = interests;
-        this.bio = function() {
+
+      };
+
+      Person.prototype.bio = function() {
           // First define a string, and make it equal to the part of
           // the bio that we know will always be the same.
           var string = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
@@ -51,7 +69,7 @@
             // if there are more than 2 interests, we loop through them
             // all, adding each one to the main string followed by a comma,
             // except for the last one, which needs an and & a full stop
-            for(var i = 0; i < this.interests.length; i++) {
+            for(let i = 0; i < this.interests.length; i++) {
               if(i === this.interests.length - 1) {
                 string += 'and ' + this.interests[i] + '.';
               } else {
@@ -63,11 +81,62 @@
           // finally, with the string built, we alert() it
           alert(string);
         };
-        this.greeting = function() {
+
+        Person.prototype.greeting = function() {
           alert('Hi! I\'m ' + this.name.first + '.');
         };
-      };
+
+        Person.prototype.farewell = function () {
+          alert(this.name.first + ' has left the building. Bye for now!');
+        }
 
       let person1 = new Person('Tammi', 'Smith', 32, 'neutral', ['music', 'skiing', 'kickboxing']);
+
+
+      function Teacher(first, last, age, gender, interests, subject) {
+        Person.call(this, first, last, age, gender, interests);
+
+        this.subject = subject;
+      }
+      // Creates a Teacher prototype that inherits all the features of Person 
+      Teacher.prototype = Object.create(Person.prototype);
+      Teacher.prototype.constructor = Teacher;
+
+      Teacher.prototype.greeting = function() {
+        let prefix;
+
+        if(this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+          prefix = 'Mr.';
+        } else if(this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+          prefix = 'Mrs.';
+        } else {
+          prefix = 'Mx.';
+        }
+
+        alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '. ');
+      };
+
+      let teacher1 = new Teacher('Dave', 'Griffiths', 31, 'Male', ['football', 'cookery'], 'Mathematics');
+
+
+
+      //Student Class
+      function Student(first, last, age, gender, interests) {
+        Person.call(this, first, last, age, gender, interests);
+      
+      }
+
+      Student.prototype = Object.create(Person.prototype);
+      Student.prototype.constructor = Student;
+
+      Student.prototype.greeting = function() {
+
+        alert('Yo! I\'m ' + this.name.first + '.');
+      };
+
+      let student1 = new Student('Liz', 'Sheppard', 17, 'Female', ['ninjutsu', 'air cadets']);
+      
+
+
     </script>
 </html>
