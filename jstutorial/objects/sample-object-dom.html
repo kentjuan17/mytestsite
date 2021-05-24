@@ -82,10 +82,10 @@
     <button type="reset" id="reset">Clear</button>
     </div>
 
-    <p class="section">Test</p>
+    <p class="section"></p>
 
     <div>
-        <ul id="list">
+        <ul id="list">Book List
 
         </ul>
     </div>
@@ -100,7 +100,6 @@
     const yearInput = document.querySelector('#year');
     const para = document.querySelector('.section');
     const addList = document.querySelector('ul');
-    const li = document.createElement('li');
     let bookList = [];
     
 
@@ -141,18 +140,23 @@
         } else {
             //Adding it to the booklist
             bookList.push(output);
+
+            console.log(output);
+
             //prints the latest book submitted
             output.submitBtn();
-            console.log(output)
+
+            let result = '';
+            if (bookList.length > 0) {
+                for (let i = 0; i < bookList.length; i++) {
+                    result += '<li>' + bookList[i].name + '</li>';
+                    addList.innerHTML = result;
+                }
+            }   
 
             //clear info after clicking submit button
             clearInput();
-
         }
-
-
-        addList.appendChild(li);
-        li.innerHTML = bookList[output];
 
         nameInput.focus()
     })
