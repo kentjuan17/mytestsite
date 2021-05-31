@@ -68,22 +68,83 @@
 // console.log(fruitProcessor(3,3));
 
 
-const calcAge = function(birthYeah) {
-    return 2037 - birthYeah;
-}
+// const calcAge = function(birthYeah) {
+//     return 2037 - birthYeah;
+// }
 
-const yearsUntilRetirement = function (birthYeah, firstName) {
-    const age = calcAge(birthYeah);
-    const retirement = 65 - age;
+// const yearsUntilRetirement = function (birthYeah, firstName) {
+//     const age = calcAge(birthYeah);
+//     const retirement = 65 - age;
 
-    if (retirement > 0) {
-        console.log(`${firstName} retires in ${retirement} years`);
-        return retirement;
-    } else {
-        console.log(`${firstName} has already retired 🎉`);
-        return -1;
-    }
-}
+//     if (retirement > 0) {
+//         console.log(`${firstName} retires in ${retirement} years`);
+//         return retirement;
+//     } else {
+//         console.log(`${firstName} has already retired 🎉`);
+//         return -1;
+//     }
+// }
 
-console.log(yearsUntilRetirement(1960, 'Kent'));
-console.log(yearsUntilRetirement(1987, 'Tine'));
+// console.log(yearsUntilRetirement(1960, 'Kent'));
+// console.log(yearsUntilRetirement(1987, 'Tine'));
+
+
+
+
+//  ARRAYS
+
+// const friends = ['Michael', 'Steven', 'Peter'];
+
+// // const years = new Array(1989, 1981, 1982, 1987);
+
+// const firstName = 'Kent';
+// const kent = [firstName, 'Juan', 2037 - 1989, 'student', friends];
+// console.log(kent);
+
+// //  Exercise
+
+// const calcAge = function (birthYeah) {
+//     return 2037 - birthYeah;
+// }
+
+// const years = [1989, 1981, 1982, 1987, 1995];
+
+
+// ARRAY OBJECTS
+
+const kent = {
+    firstName: 'Kent',
+    lastName: 'Juan',
+    birthYear: 1989,
+    job: 'student',
+    friends: ['Mic', 'Jr', 'Biboy'],
+    hasDriverLicense: true,
+    //function expression, object method 
+    calcAge: function(birthYear) {
+        return 2037 - birthYear;
+    } 
+};
+
+const nameKey = 'Name';
+console.log(kent['first' + nameKey]);
+console.log(kent['last' + nameKey]);
+
+// const interestedIn = prompt('What do you want to know about Kent? Choose between firstName, lastName, age, job, and friends');
+// if (kent[interestedIn]) {
+//     console.log(kent[interestedIn])
+// } else {
+//     console.log('Wrong request! Choose between firstName, lastName, age, job, and friends')
+// }
+
+kent.location = 'Philippines';
+kent['twitter'] = '@ikentweetjuan';
+console.log(kent);
+
+// Challenge
+
+console.log(`${kent.firstName} has ${kent.friends.length} friends and his best friend is called ${kent.friends[0]}`);
+
+console.log(kent.calcAge(1989)); //dot notation
+console.log(kent['calcAge'](1989)); //bracket notation
+
+
