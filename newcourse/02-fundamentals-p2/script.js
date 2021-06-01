@@ -112,22 +112,27 @@
 
 // ARRAY OBJECTS
 
-const kent = {
-    firstName: 'Kent',
-    lastName: 'Juan',
-    birthYear: 1989,
-    job: 'student',
-    friends: ['Mic', 'Jr', 'Biboy'],
-    hasDriverLicense: true,
-    //function expression, object method 
-    calcAge: function(birthYear) {
-        return 2037 - birthYear;
-    } 
-};
+// const kent = {
+//     firstName: 'Kent',
+//     lastName: 'Juan',
+//     birthYear: 1989,
+//     job: 'student',
+//     friends: ['Mic', 'Jr', 'Biboy'],
+//     hasDriverLicense: true,
+//     //function expression, object method 
+//     calcAge: function() {
+//         this.age = 2037 - this.birthYear;
+//         return this.age;
+//     },
 
-const nameKey = 'Name';
-console.log(kent['first' + nameKey]);
-console.log(kent['last' + nameKey]);
+//     getSummary: function() {
+//         return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and he has ${this.hasDriverLicense ? 'a': 'no'} driver's license`;
+//     }
+// };
+
+// const nameKey = 'Name';
+// console.log(kent['first' + nameKey]);
+// console.log(kent['last' + nameKey]);
 
 // const interestedIn = prompt('What do you want to know about Kent? Choose between firstName, lastName, age, job, and friends');
 // if (kent[interestedIn]) {
@@ -136,15 +141,106 @@ console.log(kent['last' + nameKey]);
 //     console.log('Wrong request! Choose between firstName, lastName, age, job, and friends')
 // }
 
-kent.location = 'Philippines';
-kent['twitter'] = '@ikentweetjuan';
-console.log(kent);
+// kent.location = 'Philippines';
+// kent['twitter'] = '@ikentweetjuan';
+// console.log(kent);
 
 // Challenge
 
-console.log(`${kent.firstName} has ${kent.friends.length} friends and his best friend is called ${kent.friends[0]}`);
+// console.log(`${kent.firstName} has ${kent.friends.length} friends and his best friend is called ${kent.friends[0]}`);
 
-console.log(kent.calcAge(1989)); //dot notation
-console.log(kent['calcAge'](1989)); //bracket notation
+// console.log(kent.calcAge()); //dot notation
+// console.log(kent['calcAge'](1989)); //bracket notation
 
 
+// Challenge
+//  "Kent is a 46-year old student, and he has a driver's license"
+// console.log(kent.getSummary())
+
+
+// LOOOOOOOOOPS
+
+//for loop keeps running while condition is TRUE
+// for (let i = 1; i <= 10; i++) {
+//     console.log(`Lifting weights repitition ${i} 🏋️‍♀️`);
+// }
+
+// const kentArray = [
+//     'Kent',
+//     'Juan',
+//     2037 - 1989,
+//     'student',
+//     ['Mic', 'JR', 'Biboy'],
+//     true
+// ];
+
+// const types = [];
+
+// for (let i = 0; i < kentArray.length; i++) {
+//     //reading from kent array
+//     console.log(kentArray[i], typeof kentArray[i]);
+
+//     // filling types array
+//     // types[i] = typeof kentArray[i];
+//     types.push(typeof kentArray[i]);
+// }
+// console.log(types)
+
+// const years = [1989, 1995, 1981, 2012];
+// const ages = [];
+
+// for (let i in years) {
+//     ages.push(2037 - years[i]);
+// }
+// console.log(ages);
+
+// //continue and break
+// console.log('----ONLY STRINGS---')
+// for (let i in kentArray) {
+//     if (typeof kentArray[i] !== 'string') continue;
+
+//     console.log(kentArray[i], typeof kentArray[i]);
+// }
+
+// console.log('----BREAK WITH NUMBER----')
+// for (let i in kentArray) {
+//     if (typeof kentArray[i] === 'number') break;
+
+//     console.log(kentArray[i], typeof kentArray[i]);
+// }
+
+
+// const kent = [
+//     'Kent',
+//     'Juan',
+//     2037 - 1989,
+//     'student',
+//     ['Mic', 'JR', 'Biboy'],
+//     true
+// ];
+
+// for (let i = kent.length-1; i >= 0; i--) {
+//     console.log(kent[i]) 
+// }
+
+// for (let exercise = 1; exercise < 4; exercise++) {
+//     console.log(`----- Starting exercise ----- ${exercise}`);
+
+//     for (let rep = 1; rep <= 6; rep++) {
+//         console.log(`Exercise ${exercise}: Lifting weight repetition ${rep} 🏋️‍♀️`);
+//     }
+// }
+
+// WHILE LOOP
+// let rep = 1;
+// while (rep <= 10) {
+//     console.log(`Lifting weight repetition ${rep}`);
+//     rep++;
+// }
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+while (dice !== 6) {
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log(`Loop ends`);
+}
