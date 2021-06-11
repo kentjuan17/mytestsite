@@ -187,11 +187,11 @@ const [pizza, , risotto, ...otherFood] = [
   ...restaurant.starterMenu,
 ];
 
-console.log(pizza, risotto, otherFood);
+// console.log(pizza, risotto, otherFood);
 
 // Objects - REST PATTERN
 const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// console.log(weekdays);
 
 // 2. Functions
 const add = function (...numbers) {
@@ -199,13 +199,50 @@ const add = function (...numbers) {
   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
   console.log(sum);
 };
-add(2, 3);
-add(5, 3, 7, 2);
-add(8, 5, 2, 2, 3, 5, 9);
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(8, 5, 2, 2, 3, 5, 9);
 
 const x = [23, 5, 69, 78, 7, 4];
-add(...x);
+// add(...x);
 
-restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach', 'pineapple');
+// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach', 'pineapple');
 
-restaurant.orderPizza('mushrooms');
+// restaurant.orderPizza('mushrooms');
+
+// SHORT CIRCUIT (&& and ||)
+// Use ANY data type, return ANY data type, short-circuiting
+// console.log(3 || 'Kent');
+// console.log('' || 'Kent');
+// console.log(true || 0);
+// console.log(undefined || null);
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+// restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+// console.log('---- AND ----');
+// console.log(0 && 'Kent');
+// console.log(8 && 'Kent');
+
+// console.log('Hello' && 24 && null && 'Kent');
+
+// // Practical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+// Nullish Coalescing Operator
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+// Nullish: null and undefined (NOT 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
