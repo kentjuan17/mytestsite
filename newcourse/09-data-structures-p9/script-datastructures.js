@@ -408,37 +408,120 @@ const restaurant = {
 // console.log([...question.values()]);
 
 const airline = 'AC Air Canada';
-const plane = 'A330';
+// const plane = 'A330';
 
-console.log(plane[0]);
-console.log(plane[1]);
-console.log(plane[2]);
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
 
-console.log('B737'[0]);
-console.log('B737'[2]);
+// console.log('B737'[0]);
+// console.log('B737'[2]);
 
-console.log(airline.length);
-console.log('B737'.length);
+// console.log(airline.length);
+// console.log('B737'.length);
 
-console.log(airline.indexOf('a'));
-console.log(airline.lastIndexOf('a'));
-console.log(airline.indexOf('Canada'));
+// console.log(airline.indexOf('a'));
+// console.log(airline.lastIndexOf('a'));
+// console.log(airline.indexOf('Canada'));
 
-console.log(airline.slice(3));
-console.log(airline.slice(3, 7));
+// console.log(airline.slice(3));
+// console.log(airline.slice(3, 7));
 
-console.log(airline.slice(0, airline.indexOf(' ')));
-console.log();
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
 
-// const title = document.querySelector('h1');
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -1));
 
-// title.addEventListener('click', () => {
-//   if (title.style.color === 'blue') {
-//     title.style.color = 'red';
-//   } else {
-//     title.style.color = 'blue';
-//   }
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') console.log('You got the middle seat 😥');
+//   else console.log('You got lucky 👌');
+// };
 
-//   // const titleStyle = title.style.color === 'blue' ? 'red' : 'blue';
-//   // title.style.color === 'blue' ? 'red' : 'blue';
-// });
+// checkMiddleSeat('11B');
+// checkMiddleSeat('27C');
+// checkMiddleSeat('9E');
+
+// console.log(new String('Kent'));
+// // this is an object
+// console.log(typeof new String('Kent'));
+// // this is a string
+// console.log(typeof new String('Kent').slice(1));
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalization in name
+// const passenger = 'keNT'; // Kent
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+
+// console.log(passenger);
+// console.log(passengerLower);
+// console.log(passengerCorrect);
+
+// const checkName = function (name) {
+//   console.log(name[0].toUpperCase() + name.slice(1).toLowerCase());
+// };
+
+// checkName('joEgBERt');
+// checkName('kHLoE');
+// checkName('kRiStInE');
+// checkName('kODY');
+
+// Comparing emails
+const email = 'hello@kent.io';
+const loginEmail = ' Hello@kENt.IO \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = loginEmail.trim();
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+// console.log(email === normalizedEmail);
+
+const compareEmail = function (origEmail, email) {
+  const checkedEmail = email.toLowerCase().trim();
+  console.log(origEmail === checkedEmail);
+};
+compareEmail(email, loginEmail);
+
+// replacing
+const priceUS = '39.99$';
+const pricePH = priceUS.replace('$', 'PHP');
+console.log(pricePH);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+console.log(announcement.replaceAll(/door/g, 'gate'));
+
+// Booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320')); // true
+console.log(plane.includes('A330')); // false
+console.log(plane.startsWith('Air')); // true
+console.log(plane.startsWith('bus')); // false
+console.log(plane.endsWith('neo')); // true
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the new Airbus family');
+}
+
+// Practice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('gun') || baggage.includes('knife')) {
+    console.log('You are NOT allowed to board');
+  } else {
+    console.log('Welcome aboard!');
+  }
+};
+
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
