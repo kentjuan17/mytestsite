@@ -59,31 +59,45 @@
 // checkIn(flight, kent);
 
 // Functions Accepting Callback Functions
-const oneWord = function (str) {
-  return str.replace(/ /g, '').toLowerCase();
-};
+// const oneWord = function (str) {
+//   return str.replace(/ /g, '').toLowerCase();
+// };
 
-const upperFirstWord = function (str) {
-  const [first, ...others] = str.split(' ');
-  return [first.toUpperCase(), ...others].join(' ');
-};
+// const upperFirstWord = function (str) {
+//   const [first, ...others] = str.split(' ');
+//   return [first.toUpperCase(), ...others].join(' ');
+// };
 
-// Higher-order function
-const transformer = function (str, fn) {
-  console.log(`Original string: ${str}`);
-  console.log(`Transformed sring: ${fn(str)}`);
+// // Higher-order function
+// const transformer = function (str, fn) {
+//   console.log(`Original string: ${str}`);
+//   console.log(`Transformed sring: ${fn(str)}`);
 
-  console.log(`Transformed by: ${fn.name} function`);
-};
+//   console.log(`Transformed by: ${fn.name} function`);
+// };
 
-transformer('JavaScript is the best!', upperFirstWord);
-transformer('JavaScript is the best!', oneWord);
+// transformer('JavaScript is the best!', upperFirstWord);
+// transformer('JavaScript is the best!', oneWord);
 
-// Javascript uses callbacks all the time
-const high5 = function () {
-  console.log('🖐');
-};
+// // Javascript uses callbacks all the time
+// const high5 = function () {
+//   console.log('🖐');
+// };
 
-document.body.addEventListener('click', high5);
+// document.body.addEventListener('click', high5);
 
-['Kent', 'Melfin', 'Jef', 'Pol', 'Yami'].forEach(high5);
+// ['Kent', 'Melfin', 'Jef', 'Pol', 'Yami'].forEach(high5);
+
+// FUNCTIONS RETURNING FUNCTIONS
+// const greet = function(greeting) {
+//   return function(name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeterHey = greet('Hey');
+// greeterHey('Kent');
+// greeterHey('Tine');
+
+// greet('Hello')('Kent');
+
