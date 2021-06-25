@@ -102,92 +102,95 @@
 // greet('Hello')('Kent');
 
 // FUNCTIONS RETURNING FUNCTIONS using arrow function
-const greet = greeting => name => console.log(`${greeting} ${name}`);
+// const greet = greeting => name => console.log(`${greeting} ${name}`);
 
-const greetHey = greet('Well Hello');
-greetHey('Kent');
+// const greetHey = greet('Well Hello');
+// greetHey('Kent');
 
-const pal = {
-  airline: 'Philippine Airlines',
-  iataCode: 'PAL',
-  bookings: [],
-  // book: function() {}
-  book(flightNum, name) {
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-  },
-};
+// const pal = {
+//   airline: 'Philippine Airlines',
+//   iataCode: 'PAL',
+//   bookings: [],
+//   // book: function() {}
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
 
-pal.book(679, 'Kent Juan');
-pal.book(942, 'Tine Juan');
-console.log(pal);
+// pal.book(679, 'Kent Juan');
+// pal.book(942, 'Tine Juan');
+// console.log(pal);
 
-const cebuPac = {
-  airline: 'Cebu Pacific',
-  iataCode: 'CB',
-  bookings: [],
-};
+// const cebuPac = {
+//   airline: 'Cebu Pacific',
+//   iataCode: 'CB',
+//   bookings: [],
+// };
 
-const book = pal.book;
+// const book = pal.book;
 
-// Does NOT work
-// book(23, 'Sarah')
+// // Does NOT work
+// // book(23, 'Sarah')
 
-// CALL METHOD
-// call the book method from pal object to cebupac object
-book.call(cebuPac, 445, 'Sarah');
-console.log(cebuPac);
+// // CALL METHOD
+// // call the book method from pal object to cebupac object
+// book.call(cebuPac, 445, 'Sarah');
+// console.log(cebuPac);
 
-book.call(pal, 432, 'Marion');
-console.log(pal);
+// book.call(pal, 432, 'Marion');
+// console.log(pal);
 
-const airCanada = {
-  airline: 'Air Canada',
-  iataCode: 'AC',
-  bookings: [],
-};
+// const airCanada = {
+//   airline: 'Air Canada',
+//   iataCode: 'AC',
+//   bookings: [],
+// };
 
-book.call(airCanada, 887, 'Robert De Niro');
-console.log(airCanada);
+// book.call(airCanada, 887, 'Robert De Niro');
+// console.log(airCanada);
 
-// APPLY METHOD - not mostly used anymore in modern JS
-const flightData = [213, 'Anne Hathaway'];
-book.apply(airCanada, flightData);
-console.log(airCanada);
-// same as the one above
-book.call(airCanada, ...flightData);
+// // APPLY METHOD - not mostly used anymore in modern JS
+// const flightData = [213, 'Anne Hathaway'];
+// book.apply(airCanada, flightData);
+// console.log(airCanada);
+// // same as the one above
+// book.call(airCanada, ...flightData);
 
-// BIND METHOD
-// book.call(cebuPac, 112, 'Matthew McConnaughey')
-const bookCebuPac = book.bind(cebuPac);
-const bookAC = book.bind(airCanada);
-bookCebuPac(112, 'Matthew McConnaughey');
-bookAC(224, 'John Cena');
-// PARTIAL APPLICATION - part of the original functon is already applied
-const bookCebuPac112 = book.bind(cebuPac, 112);
-bookCebuPac112('Morgan Freeman');
+// // BIND METHOD
+// // book.call(cebuPac, 112, 'Matthew McConnaughey')
+// const bookCebuPac = book.bind(cebuPac);
+// const bookAC = book.bind(airCanada);
+// bookCebuPac(112, 'Matthew McConnaughey');
+// bookAC(224, 'John Cena');
+// // PARTIAL APPLICATION - part of the original functon is already applied
+// const bookCebuPac112 = book.bind(cebuPac, 112);
+// bookCebuPac112('Morgan Freeman');
 
-// Using BIND METHOD With Event Listeners
-pal.planes = 300;
-pal.buyPlane = function () {
-  console.log(this);
-  this.planes++;
-  console.log(this.planes);
-};
+// // Using BIND METHOD With Event Listeners
+// pal.planes = 300;
+// pal.buyPlane = function () {
+//   console.log(this);
+//   this.planes++;
+//   console.log(this.planes);
+// };
 
-document
-  .querySelector('.buy')
-  .addEventListener('click', pal.buyPlane.bind(pal));
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', pal.buyPlane.bind(pal));
 
-// Partial application
+// // Partial application
 
-const addTax = (rate, value) => value + value * rate;
-console.log(addTax(0.1, 200));
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
 
-const addVAT = addTax.bind(null, 0.23);
-// addVAT = value => value + value * 0.23
+// const addVAT = addTax.bind(null, 0.23);
+// // addVAT = value => value + value * 0.23
 
-console.log(addVAT(123));
-console.log(addVAT(300));
+// console.log(addVAT(123));
+// console.log(addVAT(300));
+
+// IMMEDIATELY INVOKED FUNCTION EXPRESSIONS (IIFE)
+// IIFE - IIFE - IIFE - IIFE
