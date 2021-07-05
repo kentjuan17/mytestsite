@@ -21,6 +21,15 @@ Test data:
 
 */
 
-const ages = [5, 2, 4, 1, 15, 8, 3];
+const calcAverageHumanAge = function (ages) {
+  // using Map Method
+  const humanAge = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  console.log(humanAge);
 
-const calcAverageHumanAge = ages.reduce();
+  // using Filter method
+  const adultDogs = humanAge.filter(age => age >= 18);
+  console.log(adultDogs);
+
+  // using Reduce Method
+};
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
