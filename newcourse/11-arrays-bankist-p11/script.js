@@ -187,9 +187,51 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  // Any Deposit greater than 10% of request
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  } else {
+    console.log(`Request is not greater than 10%`);
+  }
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
-  console.log('Delete');
+  // console.log('Delete');
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    console.log(index);
+
+    // .indexOf(23)
+
+    // Delete account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  } else {
+    console.log(`Cannot delete other account, You can only delete your own.`);
+  }
+
+  // Clear input fields
+  inputCloseUsername.value = inputClosePin.value = '';
+  inputClosePin.blur();
 });
 
 // console.log(accounts);
@@ -408,4 +450,30 @@ console.log(totalDepositsUSD);
 
 // console.log(account);
 
+/*
 // FINDINDEX METHOD
+const index = accounts.findIndex(
+  acc => acc.username === currentAccount.username
+);
+console.log(index);
+
+*/
+
+// INCLUDES method - checks the array if the parameter is included.
+
+// SOME method - if there is a value where the condition is true
+
+console.log(movements);
+
+// EQUALITY
+console.log(movements.includes(-130));
+
+// CONDITION - SOME METHOD
+console.log(movements.some(mov => mov === -130));
+
+const anyDesposits = movements.some(mov => mov > 1500);
+console.log(anyDesposits);
+
+// EVERY - only returns true if all the elements passes the condition
+console.log(movements.every(mov => mov > 0));
+// console.log(account4.movements.every(mov => mov > 0));
