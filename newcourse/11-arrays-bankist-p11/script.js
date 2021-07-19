@@ -62,9 +62,13 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Display movements
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+  // .textContent = 0
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -234,8 +238,12 @@ btnClose.addEventListener('click', function (e) {
   inputClosePin.blur();
 });
 
+let sorted = false;
+
 btnSort.addEventListener('click', function (e) {
-  currentAccount.movements.sort((a, b) => a - b);
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 // console.log(accounts);
 
@@ -544,3 +552,33 @@ movements.sort((a, b) => b - a);
 console.log(movements);
 
 */
+
+// More ways of creating and filling arrays
+const arr3 = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// Empty arrays + fill method
+const x = new Array(7);
+console.log(x);
+x.fill(1, 3, 5);
+console.log(x);
+
+arr3.fill(23, 4, 6);
+console.log(arr3);
+
+// Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+
+// generate 10 results of dice rolls
+const diceRolls = Array.from({ length: 10 }, () =>
+  Math.floor(Math.random() * 6 + 1)
+);
+
+console.log(diceRolls);
+
+const movementsUI = Array.from(document.querySelectorAll('.movements__value'));
+
+console.log(movementsUI);
