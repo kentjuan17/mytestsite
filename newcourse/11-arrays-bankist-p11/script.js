@@ -234,6 +234,9 @@ btnClose.addEventListener('click', function (e) {
   inputClosePin.blur();
 });
 
+btnSort.addEventListener('click', function (e) {
+  currentAccount.movements.sort((a, b) => a - b);
+});
 // console.log(accounts);
 
 /*
@@ -510,6 +513,34 @@ const overallBalance2 = accounts
 console.log(overallBalance2);
 */
 
-// SORTING ARRAYS
+/*
+// SORTING ARRAYS - Always sort as STRINGS
+
+// Strings
 const owners = ['Kent', 'Tine', 'Khloe', 'Kody'];
 console.log(owners.sort());
+
+// Numbers
+console.log(movements);
+console.log(movements.sort()); // only sort the array alphabetically
+
+// return < 0, A, B (keep order)
+// return > 0, B, A (switch order)
+
+// Ascending
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+// });
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+// Desscending
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (b > a) return 1;
+// });
+movements.sort((a, b) => b - a);
+console.log(movements);
+
+*/
