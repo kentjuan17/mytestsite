@@ -66,9 +66,13 @@ const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
   // .textContent = 0
 
+<<<<<<< Updated upstream
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
+=======
+  movements.forEach(function (mov, i) {
+>>>>>>> Stashed changes
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -543,7 +547,7 @@ console.log(movements.sort()); // only sort the array alphabetically
 movements.sort((a, b) => a - b);
 console.log(movements);
 
-// Desscending
+// Descending
 // movements.sort((a, b) => {
 //   if (a > b) return -1;
 //   if (b > a) return 1;
