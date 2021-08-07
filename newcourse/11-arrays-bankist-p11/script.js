@@ -66,13 +66,9 @@ const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
   // .textContent = 0
 
-<<<<<<< Updated upstream
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
-=======
-  movements.forEach(function (mov, i) {
->>>>>>> Stashed changes
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
