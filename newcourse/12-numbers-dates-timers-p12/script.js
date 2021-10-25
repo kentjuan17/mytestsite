@@ -81,6 +81,24 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const formatMovementDate = function (date, locale) {
+  const calcDaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+  const daysPassed = calcDaysPassed(new Date(), date);
+  console.log(daysPassed);
+
+  if (daysPassed === 0) return 'Today';
+  if (daysPassed === 1) return 'Yesterday';
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  // else {
+  //   const day = `${date.getDate()}`.padStart(2, 0);
+  //   const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  //   const year = date.getFullYear();
+  // return `${day}/${month}/${year}`;
+  return new Intl.DateTimeFormat(locale).format(date);
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -93,10 +111,7 @@ const displayMovements = function (acc, sort = false) {
 
     // display date of every transaction
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    const displayDate = `${month}/${day}/${year}`;
+    const displayDate = formatMovementDate(date, acc.locale);
 
     const html = `
       <div class="movements__row">
@@ -171,6 +186,7 @@ updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
 // Month/Day/Year - 12/31/2000 - HH:MM
+// Experimenting API
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -190,12 +206,29 @@ btnLogin.addEventListener('click', function (e) {
 
     // Create current date and time
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const minute = `${now.getMinutes()}`.padStart(2, 0);
-    labelDate.textContent = `${month}/${day}/${year}, ${hour}:${minute}`;
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+      // weekday: 'long',
+    };
+    const locale = navigator.language;
+    console.log(locale);
+
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
+
+    // const now = new Date();
+    // const day = `${now.getDate()}`.padStart(2, 0);
+    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    // const year = now.getFullYear();
+    // const hour = `${now.getHours()}`.padStart(2, 0);
+    // const minute = `${now.getMinutes()}`.padStart(2, 0);
+    // labelDate.textContent = `${month}/${day}/${year}, ${hour}:${minute}`;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -483,3 +516,28 @@ future.setFullYear(2040);
 console.log(future);
 
 */
+
+// Operations with Dates
+/*
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(+future);
+
+const calcDaysPassed = (date1, date2) =>
+  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+// time changes due to daylight changes - use a date library like MOMENT.JS
+// 1000 converts milliseconds to seconds
+// 60 converts seconds to minutes
+// 60 converts minutes to hours
+// 24 converts hours to days
+// use Math.abs if you want to negate the negative value of days passed
+
+const days1 = calcDaysPassed(new Date(2037, 4, 14), new Date(2037, 4, 24));
+
+console.log(days1);
+*/
+
+// Internationalizing Numbers
+
+const num = 3888982374.23;
+console.log('US:    ', new Intl.NumberFormat('en-US').format(num));
