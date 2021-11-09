@@ -92,7 +92,7 @@ message.style.height =
 
 console.log(getComputedStyle(message).height);
 
-document.documentElement.style.setProperty('--color-primary', 'orangered'); // change CSS style
+// document.documentElement.style.setProperty('--color-primary', 'orangered'); // change CSS style
 
 // Attributes
 const logo = document.querySelector('.nav__logo');
@@ -124,3 +124,37 @@ logo.classList.toggle('c');
 logo.classList.contains('c'); // not includes
 
 // logo.className = 'Kent' // DO NOT USE
+
+/* 
+  Implementing Smooth Scrolls - EP 183
+*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  //  Old School Scrolling
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  // Modern Scrolling
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+/* 
+  EP 184 - Types of Events and Event Handlers
+*/
