@@ -6,6 +6,10 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+const nav = document.querySelector('.nav');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
 
 ///////////////////////////////////////
 // Modal window
@@ -65,7 +69,6 @@ btnScrollTo.addEventListener('click', function (e) {
 
 ///////////////////////////////////////////////////
 // Page Navigation
-
 document.querySelectorAll('.nav__link').forEach(function (el) {
   el.addEventListener('click', function (e) {
     e.preventDefault();
@@ -74,6 +77,90 @@ document.querySelectorAll('.nav__link').forEach(function (el) {
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   });
 });
+
+// Tabbed Component
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  // Guard clause
+  if (!clicked) return;
+
+  // Remove active classes
+  tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+  tabsContent.forEach(content =>
+    content.classList.remove('operations__content--active')
+  );
+
+  // Active tab
+  clicked.classList.add('operations__tab--active');
+
+  // Activate content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
+// Menu fade animation
+const handleHover = function (e) {
+  // console.log(this.currentTarget);
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(element => {
+      if (element !== link) element.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+// Passing an "argument" into handler
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+nav.addEventListener('mouseout', handleHover.bind(1));
+
+// Sticky navigation: Intersection Observer API
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// };
+
+// const obsOptions = {
+//   root: null,
+//   threshold: [0, 0.2],
+// }; // threshold - intersecting the viewport at 10%
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(section1);
+
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`, // height of navigation
+});
+headerObserver.observe(header);
+
+///////////////////////////////////////////////////
+// Sticky Navigation
+// const initialCoords = section1.getBoundingClientRect();
+// console.log(initialCoords);
+// window.addEventListener('scroll', function () {
+//   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+// });
+
+/*
+tabs.forEach(tab => tab.addEventListener('click', () => console.log('tab'))); //not ideal for 100 or more tabs
+*/
 
 // EP 187 - 10:05
 
@@ -96,22 +183,14 @@ console.log(allButtons);
 
 console.log(document.getElementsByClassName('btn'));
 */
-
-// Creating and inserting elements
+/*
+// Creating and inserting elements - COOKIES
 const header = document.querySelector('.header');
 const message = document.createElement('div');
 message.classList.add('cookie-message');
-// message.textContent = 'We use cookies for improved functionality and analytics.'
 message.innerHTML =
   'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
-
-// header.prepend(message); // before the first child of node
 header.append(message); // after the last child of node
-// header.append(message.cloneNode(true)); // clone the message
-
-// header.before(message);
-// header.after(message);
-
 // Delete elements
 document
   .querySelector('.btn--close-cookie')
@@ -119,25 +198,27 @@ document
     // message.remove();
     message.parentElement.removeChild(message);
   });
-
-// Styles, Attributes and Classes
-
 // Styles
 message.style.backgroundColor = '#37383d';
 message.style.width = '100%';
-
-console.log(message.style.color);
-console.log(message.style.backgroundColor);
-
-console.log(getComputedStyle(message).color);
-
 message.style.height =
   parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+*/
+// header.prepend(message); // before the first child of node
+// header.append(message.cloneNode(true)); // clone the message
 
-console.log(getComputedStyle(message).height);
+// header.before(message);
+// header.after(message);
+
+// console.log(message.style.color);
+// console.log(message.style.backgroundColor);
+
+// console.log(getComputedStyle(message).color);
+
+// console.log(getComputedStyle(message).height);
 
 // document.documentElement.style.setProperty('--color-primary', 'orangered'); // change CSS style
-
+/*
 // Attributes
 const logo = document.querySelector('.nav__logo');
 console.log(logo);
@@ -168,11 +249,12 @@ logo.classList.toggle('c');
 logo.classList.contains('c'); // not includes
 
 // logo.className = 'Kent' // DO NOT USE
+*/
 
 /* 
   EP 184 - Types of Events and Event Handlers
 */
-
+/*
 // modern
 const h1 = document.querySelector('h1');
 
@@ -183,6 +265,7 @@ const alertH1 = function (e) {
 h1.addEventListener('mouseenter', alertH1);
 
 setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+*/
 
 // h1.addEventListener('mouseenter', function (e) {
 //   alert('addEventListener: Great! You are reading the heading!');
@@ -224,4 +307,53 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 
 /* 
   EP 187 - Event Delegation - Implementing Page Navigation
+*/
+
+/*
+  EP 188 - DOM Traversing
+*/
+
+/*
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'orangered';
+
+// Going upwards: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+// Going sideways: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children); // select the parent element then include all the children
+[...h1.parentElement.children].forEach(function (element) {
+  if (element !== h1) element.style.transform = 'scale(0.5)';
+});
+
+*/
+
+/*
+  EP 189 - Building a Tabbed Component
+*/
+
+/*
+  EP 190 - Passing Arguments to Event Handlers
+*/
+
+/*
+  EP 191 - Implementing a Sticky Navigation - The Scroll Event
+*/
+
+/*
+  EP 192 - A Better Way - The Intersection Observer API
 */
