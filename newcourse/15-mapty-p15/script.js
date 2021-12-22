@@ -77,7 +77,13 @@ class App {
   #workouts = [];
 
   constructor() {
+    // Get user's position
     this._getPosition();
+
+    // Get data from local storage
+    this._getLocalStorage();
+
+    // Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
@@ -96,12 +102,10 @@ class App {
   _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
 
     const coords = [latitude, longitude];
 
     // from Leaflet Library
-    console.log(this);
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -111,6 +115,8 @@ class App {
 
     // Handling clicks on map
     this.#map.on('click', this._showForm.bind(this));
+
+    this.#workouts.forEach(work => this._renderWorkoutMarker(work));
   }
 
   _showForm(mapE) {
@@ -185,16 +191,19 @@ class App {
     this.#workouts.push(workout);
 
     // Render workout on map as marker
-    this.renderWorkoutMarker(workout);
+    this._renderWorkoutMarker(workout);
 
     // Render workout on list
     this._renderWorkout(workout);
 
     // Hide form and Clear input fields
     this._hideForm();
+
+    // Set local storage to all workouts
+    this._setLocalStorage();
   }
 
-  renderWorkoutMarker(workout) {
+  _renderWorkoutMarker(workout) {
     L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
@@ -280,6 +289,25 @@ class App {
     // using the public interface
     workout.click();
   }
+
+  _setLocalStorage() {
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+  }
+
+  _getLocalStorage() {
+    const data = JSON.parse(localStorage.getItem('workouts'));
+
+    if (!data) return;
+
+    this.#workouts = data;
+
+    this.#workouts.forEach(work => this._renderWorkout(work));
+  }
+
+  reset() {
+    localStorage.removeItem('workouts');
+    location.reload();
+  }
 }
 
 const app = new App();
@@ -322,4 +350,28 @@ const app = new App();
 
 /* 
     EP 236 - Move to Marker on Click
+*/
+
+/* 
+    EP 237 - Working with Local Storage
+*/
+
+/* 
+    EP 238 - Final Considerations
+*/
+
+/* 
+Additional Feature Ideas: Challenges
+1. Ability to edit a workout
+2. Ability to delete a workout
+3. Ability to delete all workouts
+4. Ability to sort workouts by a certain field (e.g. distance)
+5. Rebuild Running and Cycling objects coming from Local Storage
+6. More realistic error and confirmation messages
+
+// very hard features
+7. Ability to position the map to show all workouts
+8. Ability to draw lines and shapes instead of just points
+9. Geocode location from coordinates ('Run in Faro, Portugal') [only after asynchronous JavaScript section]
+10. Display weather data for workout time and place [async needed]
 */
