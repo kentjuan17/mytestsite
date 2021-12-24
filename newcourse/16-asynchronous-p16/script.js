@@ -67,6 +67,8 @@ btn.addEventListener('click', function () {
   getCountryData('sweden');
 });
 
+/*
+// Event Loop in Practice
 console.log('Test Start'); // logs 1st
 setTimeout(() => console.log('0 sec timer'), 0); // logs last because it executes the microtask queue first before callback queue
 Promise.resolve('Resolved promise 1').then(response => console.log(response)); // logs 3rd
@@ -75,7 +77,53 @@ Promise.resolve('Resolved promise 2').then(response => {
   console.log(response);
 }); //logs 4th
 console.log('Test End'); //logs 2nd
+*/
 
+// Building a Simple Promise
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lottery draw is happening 🔮');
+
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('You WIN 💰');
+    } else {
+      reject(new Error('You Lose 👎'));
+    }
+  }, 2000);
+});
+
+lotteryPromise
+  .then(response => console.log(response))
+  .catch(error => console.log(error));
+
+// Promisifying setTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(1)
+  .then(() => {
+    console.log('I waited for 1 second');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 2 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 3 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 4 seconds');
+    return wait(1);
+  })
+  .then(() => console.log('I waited for 5 seconds'));
+
+Promise.resolve('abc').then(x => console.log(x));
+Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 /*
 const getCountryAndNeighbour = function (country) {
   // AJAX call country 1
@@ -174,4 +222,8 @@ Promises - an object that is used as a placeholder for the future result of an a
 
 /* 
   EP 252 - The Event Loop in Practice
+ */
+
+/* 
+  EP 253 - Building a Simple Promise
  */
