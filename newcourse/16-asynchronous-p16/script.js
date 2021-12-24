@@ -64,8 +64,17 @@ const getCountryData = function (country) {
 
 btn.addEventListener('click', function () {
   countriesContainer.innerHTML = '';
-  getCountryData('poland');
+  getCountryData('sweden');
 });
+
+console.log('Test Start'); // logs 1st
+setTimeout(() => console.log('0 sec timer'), 0); // logs last because it executes the microtask queue first before callback queue
+Promise.resolve('Resolved promise 1').then(response => console.log(response)); // logs 3rd
+Promise.resolve('Resolved promise 2').then(response => {
+  for (let i = 0; i < 1000000000; i++) {}
+  console.log(response);
+}); //logs 4th
+console.log('Test End'); //logs 2nd
 
 /*
 const getCountryAndNeighbour = function (country) {
@@ -144,21 +153,25 @@ Promises - an object that is used as a placeholder for the future result of an a
 */
 
 /* 
-    EP 246 - Consuming Promises
+  EP 246 - Consuming Promises
  */
 
 /* 
-    EP 247 - Chaining Promises
+  EP 247 - Chaining Promises
  */
 
 /* 
-    EP 248 - Handling Rejected Promises
+  EP 248 - Handling Rejected Promises
  */
 
 /* 
-    EP 249 - Throwing Errors Manually
-    */
+  EP 249 - Throwing Errors Manually
+  */
 
 /* 
-    EP 250 - Asynchoronous Behind the Scenes - EVENT LOOP
+  EP 250 - Asynchoronous Behind the Scenes - EVENT LOOP
+ */
+
+/* 
+  EP 252 - The Event Loop in Practice
  */
