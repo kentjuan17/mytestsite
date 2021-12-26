@@ -62,10 +62,10 @@ const getCountryData = function (country) {
     .finally(() => (countriesContainer.style.opacity = 1));
 };
 
-btn.addEventListener('click', function () {
-  countriesContainer.innerHTML = '';
-  getCountryData('sweden');
-});
+// btn.addEventListener('click', function () {
+//   countriesContainer.innerHTML = '';
+//   getCountryData('sweden');
+// });
 
 /*
 // Event Loop in Practice
@@ -78,7 +78,7 @@ Promise.resolve('Resolved promise 2').then(response => {
 }); //logs 4th
 console.log('Test End'); //logs 2nd
 */
-
+/*
 // Building a Simple Promise
 const lotteryPromise = new Promise(function (resolve, reject) {
   console.log('Lottery draw is happening 🔮');
@@ -124,6 +124,54 @@ wait(1)
 
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem!')).catch(x => console.error(x));
+*/
+
+// Promise - Geolocation API
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   error => reject(error)
+    // );
+
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// getPosition().then(
+//   position => console.log(position),
+//   error => console.error(error)
+// );
+
+const whereAmI = function () {
+  getPosition()
+    .then(position => {
+      const { latitude: lat, longitude: lng } = position.coords;
+
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Problem with geocoding ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+    })
+    .then(response => {
+      if (!response.ok) throw new Error(`Country not found ${response.status}`);
+      return response.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(error => console.log(`${error.message} ⚠️`))
+    .finally(() => (countriesContainer.style.opacity = 1));
+};
+
+btn.addEventListener('click', whereAmI);
+
 /*
 const getCountryAndNeighbour = function (country) {
   // AJAX call country 1
@@ -226,4 +274,8 @@ Promises - an object that is used as a placeholder for the future result of an a
 
 /* 
   EP 253 - Building a Simple Promise
+ */
+
+/* 
+  EP 254 - Promisifying the Geolocation API
  */
