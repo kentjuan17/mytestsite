@@ -75,27 +75,59 @@ const getPosition = function () {
 
 // Promises with Async/Await
 const whereAmI = async function () {
-  // Geolocation
-  const position = await getPosition();
-  const { latitude: lat, longitude: lng } = position.coords;
+  try {
+    // Geolocation
+    const position = await getPosition();
+    const { latitude: lat, longitude: lng } = position.coords;
 
-  // Reverse Geocoding
-  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-  const dataGeo = await resGeo.json();
-  console.log(dataGeo);
+    // Reverse Geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
 
-  // Country data
-  const response = await fetch(
-    `https://restcountries.com/v3.1/name/${dataGeo.country}`
-  );
-  const data = await response.json();
-  console.log(data);
-  renderCountry(data[0]);
-  countriesContainer.style.opacity = 1;
+    if (!resGeo.ok) throw new Error('Problem getting location data');
+
+    const dataGeo = await resGeo.json();
+
+    // Country data
+    const response = await fetch(
+      `https://restcountries.com/v3.1/name/${dataGeo.country}`
+    );
+
+    if (!resGeo.ok) throw new Error('Problem getting country');
+
+    const data = await response.json();
+
+    renderCountry(data[0]);
+    countriesContainer.style.opacity = 1;
+
+    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
+  } catch (error) {
+    console.error(error);
+    renderError(`Something went wrong ⚠️`);
+    countriesContainer.style.opacity = 1;
+
+    // Refect promise returned from async function
+    throw error;
+  }
 };
 
-whereAmI();
-console.log('First');
+console.log('1: Getting location');
+// const city = whereAmI(); //async function
+// console.log(city)
+// whereAmI()
+//   .then(city => console.log(`2: ${city}`))
+//   .catch(error => console.error(`2: ${error.message}`))
+//   .finally(() => console.log('3: Finished getting location'));
+
+// ASYNC IIFE - Immediately Invoked Function Expression
+(async function () {
+  try {
+    const city = await whereAmI();
+    console.log(`2: ${city}`);
+  } catch (error) {
+    console.error(`2: ${error.message}`);
+  }
+  console.log('3: Finished getting location');
+})();
 
 /*
 // Event Loop in Practice
@@ -313,3 +345,44 @@ Promises - an object that is used as a placeholder for the future result of an a
 /* 
   EP 256 - Consuming Promises with Async/Await
  */
+
+/* 
+  EP 257 - Error Handling with Try...Catch
+ */
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   x = 3;
+// } catch (error) {
+//   console.log(error.message);
+// }
+
+/* 
+  EP 258 - Returning Values from Async Functions
+  */
+
+/* 
+  EP 259 - Running Promises in Parallel
+  */
+
+const get3Countries = async function (c1, c2, c3) {
+  try {
+    // const [data1] = await getJSON(`https://restcountries.com/v3.1/name/${c1}`);
+    // const [data2] = await getJSON(`https://restcountries.com/v3.1/name/${c2}`);
+    // const [data3] = await getJSON(`https://restcountries.com/v3.1/name/${c3}`);
+    // console.log([data1.capital, data2.capital, data3.capital]);
+
+    const data = await Promise.all([
+      getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+    ]);
+
+    console.log(data.map(d => d[0].capital));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+get3Countries('portugal', 'canada', 'tanzania');
