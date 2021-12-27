@@ -67,6 +67,36 @@ const getCountryData = function (country) {
 //   getCountryData('sweden');
 // });
 
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// Promises with Async/Await
+const whereAmI = async function () {
+  // Geolocation
+  const position = await getPosition();
+  const { latitude: lat, longitude: lng } = position.coords;
+
+  // Reverse Geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+  // Country data
+  const response = await fetch(
+    `https://restcountries.com/v3.1/name/${dataGeo.country}`
+  );
+  const data = await response.json();
+  console.log(data);
+  renderCountry(data[0]);
+  countriesContainer.style.opacity = 1;
+};
+
+whereAmI();
+console.log('First');
+
 /*
 // Event Loop in Practice
 console.log('Test Start'); // logs 1st
@@ -125,7 +155,7 @@ wait(1)
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 */
-
+/*
 // Promise - Geolocation API
 const getPosition = function () {
   return new Promise(function (resolve, reject) {
@@ -137,12 +167,12 @@ const getPosition = function () {
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
-
+*/
 // getPosition().then(
 //   position => console.log(position),
 //   error => console.error(error)
 // );
-
+/*
 const whereAmI = function () {
   getPosition()
     .then(position => {
@@ -169,8 +199,8 @@ const whereAmI = function () {
     .catch(error => console.log(`${error.message} ⚠️`))
     .finally(() => (countriesContainer.style.opacity = 1));
 };
-
-btn.addEventListener('click', whereAmI);
+*/
+// btn.addEventListener('click', whereAmI);
 
 /*
 const getCountryAndNeighbour = function (country) {
@@ -278,4 +308,8 @@ Promises - an object that is used as a placeholder for the future result of an a
 
 /* 
   EP 254 - Promisifying the Geolocation API
+ */
+
+/* 
+  EP 256 - Consuming Promises with Async/Await
  */
