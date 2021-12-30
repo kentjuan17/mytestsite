@@ -12,7 +12,7 @@ console.log('Importing module');
 
 // ShoppingCart.addToCart('bread', 5);
 // console.log(ShoppingCart.price, ShoppingCart.qt);
-/*
+
 import add, { cart } from './shoppingCart.js';
 add('pizza', 2);
 add('bread', 5);
@@ -20,7 +20,7 @@ add('apples', 4);
 add('mango', 2);
 
 console.log(cart);
-*/
+
 //  DO NOT MIX DEFAULT AND NAMED EXPORTS
 // USE EITHER DEFAULT OR NAMED EXPORTS
 
