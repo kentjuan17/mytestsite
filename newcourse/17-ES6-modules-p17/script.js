@@ -99,7 +99,7 @@ rmdir - remove existing folder without file
     EP 270 - Introduction to NPM (Node Package Manager)
 */
 
-import cloneDeep from './node_modules/lodash-es/clone.js';
+import cloneDeep from 'lodash-es';
 
 const state = {
   cart: [
@@ -118,3 +118,8 @@ console.log(stateDeepClone);
 /* 
     EP 271 - Bundling with Parcel and NPM Scripts
 */
+
+// not reload the live page whenever saving the script
+if (module.hot) {
+  module.hot.accept();
+}
