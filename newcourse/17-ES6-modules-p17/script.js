@@ -123,3 +123,33 @@ console.log(stateDeepClone);
 if (module.hot) {
   module.hot.accept();
 }
+
+/* 
+    EP 272 - Babel - Polyfilling
+*/
+
+class Person {
+  #greeting = 'hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.#greeting}, ${this.name}`);
+  }
+}
+
+const kent = new Person('Kent');
+
+console.log('Kent' ?? null);
+
+console.log(cart.find(el => el.quantity >= 2));
+
+Promise.resolve('TEST').then(x => console.log(x));
+
+import 'core-js/stable';
+// import 'core-js/stable/array/find';
+
+// Polyfilling async functions
+import 'regenerator-runtime/runtime';
+
+/* 
+    EP 273 - Modern, Clean and Declarative JavaScript Programming
+*/
