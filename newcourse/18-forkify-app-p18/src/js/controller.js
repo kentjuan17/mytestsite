@@ -31,19 +31,21 @@ const renderSpinner = function (parentEl) {
 
 const showRecipe = async function () {
   try {
+    const id = window.location.hash.slice(1);
+
+    if (!id) return;
+
     // 1. Loading recipe
     renderSpinner(recipeContainer);
 
     const response = await fetch(
-      // 'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886'
-      'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bcfb2'
+      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
     );
     const data = await response.json();
 
     if (!response.ok) throw new Error(`${data.message} (${response.status})`);
-
-    console.log(response, data);
     let { recipe } = data.data;
+
     recipe = {
       id: recipe.id,
       title: recipe.title,
@@ -54,7 +56,6 @@ const showRecipe = async function () {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
-    console.log(recipe);
 
     // 2. Rendering recipe
     const markup = `
@@ -81,8 +82,10 @@ const showRecipe = async function () {
             <svg class="recipe__info-icon">
               <use href="${icons}#icon-users"></use>
             </svg>
-            <span class="recipe__info-data recipe__info-data--people">4</span>
-            <span class="recipe__info-text">${recipe.servings}</span>
+            <span class="recipe__info-data recipe__info-data--people">${
+              recipe.servings
+            }</span>
+            <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
               <button class="btn--tiny btn--increase-servings">
@@ -160,4 +163,7 @@ const showRecipe = async function () {
     alert(error);
   }
 };
-showRecipe();
+
+// window.addEventListener('hashchange', showRecipe);
+// window.addEventListener('load', showRecipe);
+['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showRecipe));
