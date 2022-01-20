@@ -8,8 +8,55 @@
   </head>
   <body>
     <script>
-      const a = ["A", "B", "C", "D", [1, 2]];
-      console.log(a);
+      // map() method
+      const priceUSD = [4, 745, 13, 20, 100];
+      const priceEUR = priceUSD.map((value) => (value *= 0.85));
+      console.log(priceUSD, priceEUR);
+
+      // filter() method
+      const studentsAge = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+      const checkedAge = studentsAge.filter((age) => age >= 18);
+      console.log(studentsAge, checkedAge);
+
+      // reduce() method - reduces an array to single value
+      const hello = "HELLO";
+      const letters = hello.split(""); // ['H', 'E', 'L', 'L', 'O']
+      const word = letters.reduce((total, nextLetter) => total + nextLetter);
+      // reduceRight() - reverse of reduce
+      const wordReversed = letters.reduceRight(
+        (total, nextLetter) => total + nextLetter
+      );
+      console.log(letters, word, wordReversed);
+
+      // Arrays of functions - ideal to store a sequence of actions or events
+      function jump() {
+        console.log("You jump!");
+      }
+
+      function punch() {
+        console.log("You punch!");
+      }
+
+      function kick() {
+        console.log("You kick!");
+      }
+
+      function block() {
+        console.log("You block!");
+      }
+
+      let actions = [];
+      actions = [jump, punch, kick, block];
+
+      /*
+      for (let i = 0; i < actions.length; i++) {
+        actions[i]();
+      }
+      */
+      // forEach method
+      actions.forEach((func) => func());
+
+      // End of script
     </script>
   </body>
 </html>
