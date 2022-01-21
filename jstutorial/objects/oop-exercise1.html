@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // OOP Exercise
+      /*
+        Create a class called Person which accepts the name of a person as a string, and his/her age as a number.
+
+        The Person class should have a method called describe which returns a string with the following syntax: "name, age years old". So for example, if John is 19 years old then the function describe of his object will return "John, 19 years old".
+
+        */
+
+      class Person {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+
+        describe() {
+          return `${this.name}, ${this.age} years old`;
+        }
+      }
+
+      function createPerson(name, age) {
+        return new Person(name, age).describe();
+      }
+
+      const kent = new Person("Kent", 32);
+      console.log(kent.describe());
+    </script>
+  </body>
+</html>
