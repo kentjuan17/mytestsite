@@ -1,0 +1,19 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "author": "Kent",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "dotenv": "^14.2.0",
+    "nodemon": "^2.0.15"
+  }
+}
