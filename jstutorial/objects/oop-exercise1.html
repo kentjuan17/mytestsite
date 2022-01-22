@@ -33,6 +33,94 @@
 
       const kent = new Person("Kent", 32);
       console.log(kent.describe());
+
+      /*
+      Write yourself a virtual cat - animals with a CLI are so much nicer than ones with fur.
+
+      Create an object that represents a cat. It should have properties for tiredness, hunger, loneliness and happiness
+      Next, write methods that increase and decrease those properties (there's an example in the slides). Call them something that actually represents what would increase or decrease these things, like "feed", "sleep", or "pet".
+      Last, write a method that prints out the cat's status in each area.
+      Bonus: Make the functions take arguments that increase or decrease arbitrary amounts
+      Bonus: Make the functions as arbitrary as cats are - sometimes make it so the cat doesn't want to be petted.
+
+      */
+
+      class Cat {
+        constructor(tiredness, hunger, loneliness, happiness) {
+          this.tiredness = tiredness;
+          this.hunger = hunger;
+          this.loneliness = loneliness;
+          this.happiness = happiness;
+        }
+
+        play() {
+          this.hunger += 5;
+          this.happiness += 20;
+          return this;
+        }
+
+        eat() {
+          this.hunger -= 5;
+          this.happiness += 5;
+          return this;
+        }
+
+        sleep() {
+          this.tiredness -= 5;
+          return this;
+        }
+        pet() {
+          this.loneliness -= 5;
+          this.happiness += 5;
+          this.tiredness += 5;
+          return this;
+        }
+      }
+
+      const Kiki = new Cat(0, 0, 0, 0);
+
+      Kiki.play().eat().sleep().pet().eat().sleep();
+      console.log(Kiki);
+
+      /*
+
+        Another Example
+
+      */
+
+      const Book = function (title, author, numPages) {
+        this.title = title;
+        this.author = author;
+        this.numPages = numPages;
+
+        this.currentPage = 0;
+      };
+
+      Book.prototype.read = function () {
+        this.currentPage = this.numPages;
+        console.log(`You read ${this.numPages} pages!`);
+      };
+
+      const PaperBack = function (title, author, numPages, cover) {
+        Book.call(this, title, author, numPages);
+        this.cover = cover;
+      };
+      PaperBack.prototype = Object.create(Book.prototype);
+
+      PaperBack.prototype.burn = function () {
+        console.log(`Omg, you burnt all ${this.numPages} pages`);
+        this.numPages = 0;
+      };
+
+      const bookList = [];
+
+      function add(book, author, pages) {
+        return bookList.push(new Book(book, author, pages));
+      }
+
+      function search(book) {
+        return bookList.filter((value) => value.title === book);
+      }
     </script>
   </body>
 </html>
