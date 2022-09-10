@@ -1,96 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ajax 4 - External API</title>
     <style>
-
-    * {
+      * {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
-    }
+      }
 
-    h1 {
+      h1 {
         text-align: center;
-    }
+      }
 
-    .button-center {
+      .button-center {
         display: flex;
         align-items: center;
         justify-content: center;
-    }
+      }
 
-    button {
+      button {
         margin: auto;
         text-align: center;
-    }
+      }
 
-    div#users {
-    
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    min-height: 100vh;
-    grid-template-columns: repeat(4, 200px);
-    grid-template-rows: minmax(200px, auto) repeat(8, 200px);
-    margin: 20px 0;
-    }
-
-
-
+      div#users {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        min-height: 100vh;
+        grid-template-columns: repeat(4, 200px);
+        grid-template-rows: minmax(200px, auto) repeat(8, 200px);
+        margin: 20px 0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>GitHub Users</h1>
-    <br>
+    <br />
     <div class="button-center">
-        <button id="btn">Get User Files</button>
+      <button id="btn">Get User Files</button>
     </div>
-    <br><br>
+    <br /><br />
     <div id="users"></div>
 
-
     <script>
-        let btn = document.querySelector('#btn');
+      let btn = document.querySelector("#btn");
 
-        btn.addEventListener('click', loadUsers);
+      btn.addEventListener("click", loadUsers);
 
-        function loadUsers() {
-            let xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://api.github.com/users', true);
+      function loadUsers() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://api.github.com/users", true);
 
-            xhr.onload = function () {
-                if(this.status == 200) {
-                    let user = JSON.parse(this.responseText);
-                    let output = '';
+        xhr.onload = function () {
+          if (this.status == 200) {
+            let user = JSON.parse(this.responseText);
+            console.log(this.responseText);
+            let output = "";
 
-                    for (let i in user) {
-                        output += 
-                        '<div id="user-'+user[i].id+'-list">' +
-                        '<img src="'+user[i].avatar_url+'" height="70" width="70">' +
-                        '<ul>' +
-                        '<li> ID: '+user[i].id+'</li>' +
-                        '<li> Login: '+user[i].login+'</li>' +
-                        '</ul>' +
-                        '</div>';
-                    }
-
-                    let users = document.getElementById('users');
-
-                    users.innerHTML = output;
-
-                }
+            for (let i in user) {
+              output +=
+                '<div id="user-' +
+                user[i].id +
+                '-list">' +
+                '<img src="' +
+                user[i].avatar_url +
+                '" height="70" width="70">' +
+                "<ul>" +
+                "<li> ID: " +
+                user[i].id +
+                "</li>" +
+                "<li> Login: " +
+                user[i].login +
+                "</li>" +
+                "</ul>" +
+                "</div>";
             }
 
-            xhr.send();
+            let users = document.getElementById("users");
 
+            users.innerHTML = output;
+          }
+        };
 
-        }
-
+        xhr.send();
+      }
     </script>
-    
-</body>
+  </body>
 </html>
